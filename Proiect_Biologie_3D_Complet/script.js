@@ -2,75 +2,184 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
+const boneInfo = {
+
+craniu:
+"Craniul protejează creierul și organele de simț. Este format din 22 de oase.",
+
+coloana:
+"Coloana vertebrală este formată din 33-34 vertebre și protejează măduva spinării.",
+
+coaste:
+"Coastele formează cutia toracică și protejează inima și plămânii.",
+
+stern:
+"Sternul este osul central al toracelui de care se atașează coastele.",
+
+bazin:
+"Bazinul susține greutatea corpului și protejează organele pelvine.",
+
+femur:
+"Femurul este cel mai lung și mai rezistent os din corpul uman.",
+
+tibie:
+"Tibia este principalul os al gambei și suportă mare parte din greutatea corpului."
+
+};
+
+window.showBone = function(name){
+
+document.getElementById("description").innerHTML =
+"<h3>" +
+name.charAt(0).toUpperCase() +
+name.slice(1) +
+"</h3><br>" +
+boneInfo[name];
+
+};
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x07111f);
 
 const camera = new THREE.PerspectiveCamera(
 60,
-window.innerWidth / window.innerHeight,
+window.innerWidth/window.innerHeight,
 0.1,
 1000
 );
 
-camera.position.set(0, 1.5, 4);
+camera.position.set(0,1.5,4);
 
 const renderer = new THREE.WebGLRenderer({
-antialias: true
+antialias:true
 });
 
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(
+window.innerWidth,
+window.innerHeight
+);
 
-document.getElementById("viewer").appendChild(renderer.domElement);
+renderer.setPixelRatio(
+window.devicePixelRatio
+);
 
-const controls = new OrbitControls(camera, renderer.domElement);
+document
+.getElementById("viewer")
+.appendChild(renderer.domElement);
+
+const controls =
+new OrbitControls(
+camera,
+renderer.domElement
+);
+
 controls.enableDamping = true;
 controls.autoRotate = true;
+controls.autoRotateSpeed = 0.5;
 
-scene.add(new THREE.AmbientLight(0xffffff, 3));
+scene.add(
+new THREE.AmbientLight(
+0xffffff,
+3
+)
+);
 
-const light = new THREE.DirectionalLight(0xffffff, 4);
-light.position.set(5, 5, 5);
+const light =
+new THREE.DirectionalLight(
+0xffffff,
+4
+);
+
+light.position.set(
+5,
+5,
+5
+);
+
 scene.add(light);
 
-new GLTFLoader().load("skeleton.gltf", (gltf) => {
+const loader =
+new GLTFLoader();
 
-    const model = gltf.scene;
+loader.load(
 
-    const box = new THREE.Box3().setFromObject(model);
-    const center = box.getCenter(new THREE.Vector3());
+"skeleton.gltf",
 
-    model.position.sub(center);
+(gltf)=>{
 
-    const size = box.getSize(new THREE.Vector3());
-    const maxDim = Math.max(size.x, size.y, size.z);
+const model =
+gltf.scene;
 
-    const scale = 2.5 / maxDim;
-    model.scale.setScalar(scale);
+const box =
+new THREE.Box3()
+.setFromObject(model);
 
-    scene.add(model);
+const center =
+box.getCenter(
+new THREE.Vector3()
+);
 
-    const loading = document.getElementById("loading");
-    if (loading) loading.style.display = "none";
-});
+model.position.sub(center);
 
-window.addEventListener("resize", () => {
+const size =
+box.getSize(
+new THREE.Vector3()
+);
 
-    camera.aspect =
-    window.innerWidth / window.innerHeight;
+const maxDim =
+Math.max(
+size.x,
+size.y,
+size.z
+);
 
-    camera.updateProjectionMatrix();
+const scale =
+2.5 / maxDim;
 
-    renderer.setSize(
-    window.innerWidth,
-    window.innerHeight
-    );
-});
+model.scale.setScalar(scale);
 
-function animate() {
-    requestAnimationFrame(animate);
-    controls.update();
-    renderer.render(scene, camera);
+scene.add(model);
+
+document
+.getElementById("loading")
+.style.display =
+"none";
+
+}
+
+);
+
+window.addEventListener(
+"resize",
+()=>{
+
+camera.aspect =
+window.innerWidth /
+window.innerHeight;
+
+camera.updateProjectionMatrix();
+
+renderer.setSize(
+window.innerWidth,
+window.innerHeight
+);
+
+}
+);
+
+function animate(){
+
+requestAnimationFrame(
+animate
+);
+
+controls.update();
+
+renderer.render(
+scene,
+camera
+);
+
 }
 
 animate();
