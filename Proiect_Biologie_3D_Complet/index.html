@@ -1,1 +1,68 @@
-<!DOCTYPE html><html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Scheletul Uman 3D</title><link rel="stylesheet" href="style.css"><script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.165.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.165.0/examples/jsm/"}}</script></head><body><div id="loading"><div class="loader"></div><h2>Se încarcă modelul 3D...</h2></div><div id="sidebar"><h1>🦴 Scheletul Uman</h1><p>Un adult are aproximativ <b>206 oase</b>.</p><div id="description">Selectează un os pentru informații.</div></div><div id="viewer"></div><script type="module" src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Schelet Uman 3D Interactiv</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.165.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.165.0/examples/jsm/"
+  }
+}
+</script>
+
+</head>
+<body>
+
+<div id="loading">
+    <div class="loader"></div>
+    <h2>Se încarcă modelul 3D...</h2>
+</div>
+
+<div id="sidebar">
+
+<h1>🦴 Scheletul Uman</h1>
+
+<p>
+Un adult are aproximativ <b>206 oase</b>.
+Apasă pe un os pentru informații.
+</p>
+
+<h2>Oase principale</h2>
+
+<button class="bone" onclick="showBone('craniu')">🧠 Craniu</button>
+<button class="bone" onclick="showBone('coloana')">🦴 Coloană vertebrală</button>
+<button class="bone" onclick="showBone('coaste')">🫁 Coaste</button>
+<button class="bone" onclick="showBone('stern')">🔹 Stern</button>
+<button class="bone" onclick="showBone('bazin')">🦵 Bazin</button>
+<button class="bone" onclick="showBone('femur')">🦿 Femur</button>
+<button class="bone" onclick="showBone('tibie')">🦶 Tibie</button>
+
+<div id="description">
+Selectează un os pentru informații.
+</div>
+
+<h2>Funcțiile sistemului osos</h2>
+
+<ul>
+<li>Susține corpul</li>
+<li>Protejează organele interne</li>
+<li>Permite mișcarea</li>
+<li>Produce celule sanguine</li>
+<li>Depozitează calciu și fosfor</li>
+</ul>
+
+</div>
+
+<div id="viewer"></div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
