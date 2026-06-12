@@ -5,63 +5,63 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 const boneInfo = {
 
 craniu: `
-<h3>🧠 Craniu</h3>
+<h2>🧠 Craniu</h2>
+<p>
 Craniul protejează creierul și organele de simț.
-Este format din 22 de oase.
+Este alcătuit din 22 de oase unite între ele.
+</p>
 `,
 
 coloana: `
-<h3>🦴 Coloană vertebrală</h3>
+<h2>🦴 Coloană vertebrală</h2>
+<p>
 Coloana vertebrală este formată din 33-34 vertebre.
-Protejează măduva spinării și susține corpul.
+Susține corpul și protejează măduva spinării.
+</p>
 `,
 
 coaste: `
-<h3>🫁 Coaste</h3>
-Coastele formează cutia toracică.
-Protejează inima și plămânii.
+<h2>🫁 Coaste</h2>
+<p>
+Cutia toracică este formată din 12 perechi de coaste.
+Acestea protejează inima și plămânii.
+</p>
 `,
 
 stern: `
-<h3>🔹 Stern</h3>
+<h2>❤️ Stern</h2>
+<p>
 Sternul este osul central al toracelui.
-La el se fixează coastele.
+La el se atașează majoritatea coastelor.
+</p>
 `,
 
 bazin: `
-<h3>🦵 Bazin</h3>
+<h2>🚶 Bazin</h2>
+<p>
 Bazinul susține greutatea corpului și protejează organele pelvine.
+</p>
 `,
 
 femur: `
-<h3>🦿 Femur</h3>
+<h2>🦵 Femur</h2>
+<p>
 Femurul este cel mai lung și mai rezistent os din corpul uman.
+</p>
 `,
 
 tibie: `
-<h3>🦶 Tibie</h3>
+<h2>🏃 Tibie</h2>
+<p>
 Tibia este principalul os al gambei și suportă mare parte din greutatea corpului.
+</p>
 `
 
 };
 
 window.showBone = function(name){
-document.getElementById("description").innerHTML = boneInfo[name];
-};
-
-window.showGeneral = function(){
-document.getElementById("description").innerHTML = `
-<h3>📚 Sistemul osos</h3>
-
-<ul>
-<li>Corpul uman are aproximativ 206 oase.</li>
-<li>Sistemul osos susține întregul corp.</li>
-<li>Protejează organele vitale.</li>
-<li>Permite mișcarea împreună cu mușchii.</li>
-<li>Măduva osoasă produce celule sanguine.</li>
-<li>Oasele stochează calciu și fosfor.</li>
-</ul>
-`;
+    document.getElementById("description").innerHTML =
+    boneInfo[name];
 };
 
 const scene = new THREE.Scene();
@@ -69,15 +69,15 @@ scene.background = new THREE.Color(0x07111f);
 
 const camera = new THREE.PerspectiveCamera(
 60,
-window.innerWidth / window.innerHeight,
+window.innerWidth/window.innerHeight,
 0.1,
 1000
 );
 
-camera.position.set(0, 1.5, 4);
+camera.position.set(0,1.5,4);
 
 const renderer = new THREE.WebGLRenderer({
-antialias: true
+antialias:true
 });
 
 renderer.setSize(
@@ -93,7 +93,8 @@ document
 .getElementById("viewer")
 .appendChild(renderer.domElement);
 
-const controls = new OrbitControls(
+const controls =
+new OrbitControls(
 camera,
 renderer.domElement
 );
@@ -109,7 +110,8 @@ new THREE.AmbientLight(
 )
 );
 
-const light = new THREE.DirectionalLight(
+const light =
+new THREE.DirectionalLight(
 0xffffff,
 4
 );
@@ -122,15 +124,16 @@ light.position.set(
 
 scene.add(light);
 
-const loader = new GLTFLoader();
+const loader =
+new GLTFLoader();
 
 loader.load(
-
 "skeleton.gltf",
 
 (gltf)=>{
 
-const model = gltf.scene;
+const model =
+gltf.scene;
 
 const box =
 new THREE.Box3()
@@ -167,14 +170,7 @@ document
 .style.display =
 "none";
 
-},
-
-undefined,
-
-(error)=>{
-console.error(error);
 }
-
 );
 
 window.addEventListener(
