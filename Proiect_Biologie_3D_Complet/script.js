@@ -4,38 +4,64 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const boneInfo = {
 
-craniu:
-"Craniul protejează creierul și organele de simț. Este format din 22 de oase.",
+craniu: `
+<h3>🧠 Craniu</h3>
+Craniul protejează creierul și organele de simț.
+Este format din 22 de oase.
+`,
 
-coloana:
-"Coloana vertebrală este formată din 33-34 vertebre și protejează măduva spinării.",
+coloana: `
+<h3>🦴 Coloană vertebrală</h3>
+Coloana vertebrală este formată din 33-34 vertebre.
+Protejează măduva spinării și susține corpul.
+`,
 
-coaste:
-"Coastele formează cutia toracică și protejează inima și plămânii.",
+coaste: `
+<h3>🫁 Coaste</h3>
+Coastele formează cutia toracică.
+Protejează inima și plămânii.
+`,
 
-stern:
-"Sternul este osul central al toracelui de care se atașează coastele.",
+stern: `
+<h3>🔹 Stern</h3>
+Sternul este osul central al toracelui.
+La el se fixează coastele.
+`,
 
-bazin:
-"Bazinul susține greutatea corpului și protejează organele pelvine.",
+bazin: `
+<h3>🦵 Bazin</h3>
+Bazinul susține greutatea corpului și protejează organele pelvine.
+`,
 
-femur:
-"Femurul este cel mai lung și mai rezistent os din corpul uman.",
+femur: `
+<h3>🦿 Femur</h3>
+Femurul este cel mai lung și mai rezistent os din corpul uman.
+`,
 
-tibie:
-"Tibia este principalul os al gambei și suportă mare parte din greutatea corpului."
+tibie: `
+<h3>🦶 Tibie</h3>
+Tibia este principalul os al gambei și suportă mare parte din greutatea corpului.
+`
 
 };
 
 window.showBone = function(name){
+document.getElementById("description").innerHTML = boneInfo[name];
+};
 
-document.getElementById("description").innerHTML =
-"<h3>" +
-name.charAt(0).toUpperCase() +
-name.slice(1) +
-"</h3><br>" +
-boneInfo[name];
+window.showGeneral = function(){
+document.getElementById("description").innerHTML = `
+<h3>📚 Sistemul osos</h3>
 
+<ul>
+<li>Corpul uman are aproximativ 206 oase.</li>
+<li>Sistemul osos susține întregul corp.</li>
+<li>Protejează organele vitale.</li>
+<li>Permite mișcarea împreună cu mușchii.</li>
+<li>Măduva osoasă produce celule sanguine.</li>
+<li>Oasele stochează calciu și fosfor.</li>
+</ul>
+`;
 };
 
 const scene = new THREE.Scene();
@@ -43,15 +69,15 @@ scene.background = new THREE.Color(0x07111f);
 
 const camera = new THREE.PerspectiveCamera(
 60,
-window.innerWidth/window.innerHeight,
+window.innerWidth / window.innerHeight,
 0.1,
 1000
 );
 
-camera.position.set(0,1.5,4);
+camera.position.set(0, 1.5, 4);
 
 const renderer = new THREE.WebGLRenderer({
-antialias:true
+antialias: true
 });
 
 renderer.setSize(
@@ -67,8 +93,7 @@ document
 .getElementById("viewer")
 .appendChild(renderer.domElement);
 
-const controls =
-new OrbitControls(
+const controls = new OrbitControls(
 camera,
 renderer.domElement
 );
@@ -84,8 +109,7 @@ new THREE.AmbientLight(
 )
 );
 
-const light =
-new THREE.DirectionalLight(
+const light = new THREE.DirectionalLight(
 0xffffff,
 4
 );
@@ -98,8 +122,7 @@ light.position.set(
 
 scene.add(light);
 
-const loader =
-new GLTFLoader();
+const loader = new GLTFLoader();
 
 loader.load(
 
@@ -107,8 +130,7 @@ loader.load(
 
 (gltf)=>{
 
-const model =
-gltf.scene;
+const model = gltf.scene;
 
 const box =
 new THREE.Box3()
@@ -145,6 +167,12 @@ document
 .style.display =
 "none";
 
+},
+
+undefined,
+
+(error)=>{
+console.error(error);
 }
 
 );
