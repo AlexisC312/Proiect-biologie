@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Schelet Uman 3D Interactiv</title>
+<title>Scheletul Uman 3D</title>
 
 <link rel="stylesheet" href="style.css">
 
 <script type="importmap">
 {
-  "imports": {
-    "three": "https://unpkg.com/three@0.165.0/build/three.module.js",
-    "three/addons/": "https://unpkg.com/three@0.165.0/examples/jsm/"
-  }
+"imports":{
+"three":"https://unpkg.com/three@0.165.0/build/three.module.js",
+"three/addons/":"https://unpkg.com/three@0.165.0/examples/jsm/"
+}
 }
 </script>
 
 </head>
+
 <body>
 
 <div id="loading">
-    <div class="loader"></div>
-    <h2>Se încarcă modelul 3D...</h2>
+<div class="loader"></div>
+<h2>Se încarcă modelul 3D...</h2>
 </div>
 
 <div id="sidebar">
@@ -31,8 +31,11 @@
 
 <p>
 Un adult are aproximativ <b>206 oase</b>.
-Apasă pe un os pentru informații.
 </p>
+
+<button class="bone" onclick="showGeneral()">
+📚 Informații generale
+</button>
 
 <h2>Oase principale</h2>
 
@@ -45,18 +48,9 @@ Apasă pe un os pentru informații.
 <button class="bone" onclick="showBone('tibie')">🦶 Tibie</button>
 
 <div id="description">
+<h3>Bine ai venit!</h3>
 Selectează un os pentru informații.
 </div>
-
-<h2>Funcțiile sistemului osos</h2>
-
-<ul>
-<li>Susține corpul</li>
-<li>Protejează organele interne</li>
-<li>Permite mișcarea</li>
-<li>Produce celule sanguine</li>
-<li>Depozitează calciu și fosfor</li>
-</ul>
 
 </div>
 
